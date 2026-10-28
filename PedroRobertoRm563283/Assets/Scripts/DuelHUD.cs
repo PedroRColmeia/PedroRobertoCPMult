@@ -92,20 +92,16 @@ public class DuelHUD : MonoBehaviour
 
     private void UpdateHealth()
     {
-        if (runner.TryGetPlayerObject(
-            runner.LocalPlayer,
-            out NetworkObject playerObject))
-        {
-            DuelHealth health =
-                playerObject.GetComponent<DuelHealth>();
+        BasketScore placar = BasketScore.Instance;
 
-            if (health != null)
-            {
-                healthText.text =
-                    "Vida: " + health.Health + " / 100";
-            }
-        }
+        if (placar == null || healthText == null)
+            return;
+
+        healthText.text =
+            "AZUL: " + placar.BluePoints +
+            "   |   VERMELHO: " + placar.RedPoints;
     }
+
 
     private void ShowResult(DuelMatch match)
     {
